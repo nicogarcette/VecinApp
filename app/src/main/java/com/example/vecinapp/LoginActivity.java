@@ -11,7 +11,6 @@ import android.content.Intent;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-
     private EditText emailText;
     private EditText passText;
     private Button loginButton ;
@@ -40,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
             loginUser(email, password);
         });
 
-
         irARegistrar.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
@@ -52,7 +50,9 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                        // aca tenenemos que lanzar la aplicacion.
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "Algo salio mal...: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

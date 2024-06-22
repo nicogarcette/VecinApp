@@ -1,5 +1,6 @@
 package com.example.vecinapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
@@ -48,7 +49,7 @@ public class CompleteProfileActivity extends AppCompatActivity {
             Map<String, Object> user = new HashMap<>();
             user.put("nombre", nombre);
             user.put("apellido", apellido);
-            user.put("email", currentUser.getEmail());
+            user.put("mail", currentUser.getEmail());
 
             db.collection("usuario").document(userId).set(user)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -56,7 +57,9 @@ public class CompleteProfileActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
 
                             Toast.makeText(CompleteProfileActivity.this, "Perfil guardado.", Toast.LENGTH_SHORT).show();
-                            // aca tenemos que lanzar la aplicacion.
+                            Intent intent = new Intent(CompleteProfileActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

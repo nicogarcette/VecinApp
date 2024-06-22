@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="categories_values">
+        <item>reunion</item>
+        <item>anuncio</item>
+        <item>servicio</item>
+    </string-array>
+</resources>

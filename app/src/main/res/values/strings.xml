@@ -42,4 +42,12 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_evento">Evento</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_perfil">Perfil</string>
+
+    <!-- name preferences   -->
+    <string name="preference_file_key">MyPreferences</string>
 </resources>
