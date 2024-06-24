@@ -1,24 +1,15 @@
 package com.example.vecinapp.ui.evento;
 
-import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.vecinapp.CompleteProfileActivity;
-import com.example.vecinapp.MainActivity;
 import com.example.vecinapp.ModelData.Evento;
-import com.example.vecinapp.ModelData.User;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ListenerRegistration;import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.CollectionReference;
 import java.util.HashMap;
 import java.util.Map;
 public class EventoViewModel extends ViewModel {
@@ -37,14 +28,14 @@ public class EventoViewModel extends ViewModel {
     public void agregarEvento(Evento newEvent) {
 
         Map<String, Object> evento = new HashMap<>();
-        evento.put("nombreUser",newEvent.userName );
-        evento.put("descripcion", newEvent.description);
-        evento.put("direccion", newEvent.direction);
-        evento.put("titulo", newEvent.title);
+        evento.put("nombreUser",newEvent.nombreUser);
+        evento.put("descripcion", newEvent.descripcion);
+        evento.put("direccion", newEvent.direccion);
+        evento.put("titulo", newEvent.titulo);
         evento.put("fecha", Timestamp.now());
-        evento.put("IdCategoria", newEvent.category);   // nombre de categoria de una
-        evento.put("apellidoUser", newEvent.userLastName);
-        evento.put("comunidad", newEvent.comunity);
+        evento.put("IdCategoria", newEvent.IdCategoria);   // nombre de categoria de una
+        evento.put("apellidoUser", newEvent.apellidoUser);
+        evento.put("comunidad", newEvent.comunidad);
         evento.put("verificado", false);
 
         eventosRef.add(evento)

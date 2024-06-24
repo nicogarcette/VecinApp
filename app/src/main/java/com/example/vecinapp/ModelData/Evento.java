@@ -1,22 +1,43 @@
 package com.example.vecinapp.ModelData;
 
-import org.osmdroid.util.GeoPoint;
+
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.GeoPoint;
 
 public class Evento {
 
     private String imagePath;
-    public String description;
-    public String title;
-    public String userName;
-    public String userLastName;
-    public String category;
-    public GeoPoint direction;
-    public String comunity;
+    public String descripcion;
+    public String titulo;
+    public String nombreUser;
+    public String apellidoUser;
+    public String IdCategoria;
+    public GeoPoint direccion;
+    public String comunidad;
+    public Timestamp fecha;
+    public boolean verificado;
+    public String id;
 
+
+    public Evento(String descripcion, String titulo, String nombreUser, String apellidoUser, String IdCategory, GeoPoint direccion, String comunidad, boolean verificado,String id, Timestamp fecha) {
+        this.descripcion = descripcion;
+        this.titulo = titulo;
+        this.nombreUser = nombreUser;
+        this.apellidoUser = apellidoUser;
+        this.IdCategoria = IdCategory;
+        this.direccion = direccion;
+        this.comunidad = comunidad;
+        this.verificado = verificado;
+        this.fecha = fecha;
+        this.id = id;
+    }
     public Evento(String imagePath, String description) {
         this.imagePath = imagePath;
-        this.description = description;
+        this.descripcion = description;
     }
+
+
+
 
     public Evento() {}
 
@@ -28,12 +49,12 @@ public class Evento {
         this.imagePath = imagePath;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 

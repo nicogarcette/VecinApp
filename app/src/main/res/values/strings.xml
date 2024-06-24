@@ -50,4 +50,10 @@
 
     <!-- name preferences   -->
     <string name="preference_file_key">MyPreferences</string>
+    <string name="title_activity_event_detail_host">eventDetailHostActivity</string>
+    <string name="title_event_list">events</string>
+    <string name="title_event_detail">event Detail</string>
+    <string name="title_activity_evento_propio_detail_host">eventoPropioDetailHostActivity</string>
+    <string name="title_eventopropio_list">eventosPropios</string>
+    <string name="title_eventopropio_detail">eventoPropio Detail</string>
 </resources>

@@ -59,7 +59,7 @@ public class EventoFragment extends Fragment {
     private ImageView eventImageView;
     private EditText eventDescription;
     private EditText eventTitulo;
-    private GeoPoint eventGeopoint;
+    private com.google.firebase.firestore.GeoPoint eventGeopoint;
     private  String eventCategory;
 
     private EditText eventDate;
@@ -189,17 +189,13 @@ public class EventoFragment extends Fragment {
         MapEventsReceiver mReceive = new MapEventsReceiver() {
             @Override
             public boolean singleTapConfirmedHelper(GeoPoint p) {
-                // Limpiar cualquier marcador anterior
                 mapView.getOverlays().remove(marker);
-
-                // Colocar el marcador en la posición clicada
                 marker.setPosition(p);
                 mapView.getOverlays().add(marker);
 
-                // Obtener y mostrar las coordenadas
                 String coordinates = "Lat: " + p.getLatitude() + ", Lng: " + p.getLongitude();
                 Toast.makeText(getActivity(), coordinates, Toast.LENGTH_LONG).show();
-                eventGeopoint = p;
+                eventGeopoint = new com.google.firebase.firestore.GeoPoint(p.getLatitude(),p.getLongitude());
 
                 return true;
             }
@@ -238,13 +234,13 @@ public class EventoFragment extends Fragment {
         User user = UserSingleton.getInstance().getUser();
 
         Evento nuevoEvento = new Evento();
-        nuevoEvento.direction = eventGeopoint;
-        nuevoEvento.category = eventCategory; // nombre de categoria de una
-        nuevoEvento.description = descripcion;
-        nuevoEvento.title = titulo;
-        nuevoEvento.userLastName = user.apellido;
-        nuevoEvento.userName = user.nombre;
-        nuevoEvento.comunity = user.comunidad;
+        nuevoEvento.direccion = eventGeopoint;
+        nuevoEvento.IdCategoria = eventCategory; // nombre de categoria de una
+        nuevoEvento.descripcion = descripcion;
+        nuevoEvento.titulo = titulo;
+        nuevoEvento.apellidoUser = user.apellido;
+        nuevoEvento.nombreUser = user.nombre;
+        nuevoEvento.comunidad = user.comunidad;
         //user.put("imagen", currentUser.getEmail()); // creo q va al storage
 
         EventoViewModel.agregarEvento(nuevoEvento);

@@ -2,21 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-
-    <!-- MAPA    -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- MAPA -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
-<!--    <uses-sdk android:targetSdkVersion="NEWEST AVAILABLE" android:minSdkVersion="8" />-->
 
     <application
         android:allowBackup="true"
@@ -28,6 +26,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VecinApp"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.perfil.eventos_propios.eventoPropioDetailHostActivity"
+            android:exported="false"
+            android:label="@string/title_activity_evento_propio_detail_host"
+            android:resizeableActivity="true"
+            tools:targetApi="24" />
+        <activity
+            android:name=".ui.home.eventos_publicos.EventDetailHostActivity"
+            android:exported="false"
+            android:label="@string/title_activity_event_detail_host"
+            android:resizeableActivity="true"
+            tools:targetApi="24" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -46,27 +56,23 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.VecinApp" >
+            android:theme="@style/Theme.VecinApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".CompleteProfileActivity"
             android:exported="false" />
-
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.VecinApp" />
-
         <activity
             android:name=".LoginActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
     </application>
+
 </manifest>
