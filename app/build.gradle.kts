@@ -73,5 +73,8 @@ dependencies {
 //    implementation 'org.osmdroid:osmdroid-mapsforge:(INSERT_VERSION_HERE)'
 //    implementation 'org.osmdroid:osmdroid-geopackage:(INSERT_VERSION_HERE)'
 
+    // glide para cargar imagenes
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
 
 }

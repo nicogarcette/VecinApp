@@ -24,12 +24,6 @@
                 android:background="@android:color/darker_gray" />
 
             <Button
-                android:id="@+id/btn_take_photo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tomar Foto" />
-
-            <Button
                 android:id="@+id/btn_select_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

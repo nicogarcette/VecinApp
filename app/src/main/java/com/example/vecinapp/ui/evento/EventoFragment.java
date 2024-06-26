@@ -81,9 +81,6 @@ public class EventoFragment extends Fragment {
 
         binding = FragmentEventoBinding.inflate(inflater, container, false);
 
-        //Button agregarEventoButton = binding.btnSaveEvent;
-        //agregarEventoButton.setOnClickListener(v -> crearEvento());
-
         return binding.getRoot();
     }
 
@@ -107,15 +104,6 @@ public class EventoFragment extends Fragment {
 //            }
 //        });
 
-
-        Button takePhotoButton = view.findViewById(R.id.btn_take_photo);
-        takePhotoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dispatchTakePictureIntent();
-            }
-        });
-
         Button selectPhotoButton = view.findViewById(R.id.btn_select_photo);
         selectPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,9 +120,6 @@ public class EventoFragment extends Fragment {
             }
         });
 
-        if (EventoViewModel.getCurrentPhotoPath() != null) {
-            eventImageView.setImageURI(Uri.parse(EventoViewModel.getCurrentPhotoPath()));
-        }
     }
 
     private void addCategoria() {
@@ -250,51 +235,25 @@ public class EventoFragment extends Fragment {
         nuevoEvento.apellidoUser = user.apellido;
         nuevoEvento.nombreUser = user.nombre;
         nuevoEvento.comunidad = user.comunidad;
-        //user.put("imagen", currentUser.getEmail()); // creo q va al storage
 
         EventoViewModel.agregarEvento(nuevoEvento);
     }
 
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                Toast.makeText(getActivity(), "Error creating file", Toast.LENGTH_SHORT).show();
-            }
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(getActivity(), "com.example.vecinapp.fileprovider", photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-            }
-        }
-    }
-
-    private File createImageFile() throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-        currentPhotoPath = image.getAbsolutePath();
-        EventoViewModel.setCurrentPhotoPath(currentPhotoPath);
-        return image;
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == getActivity().RESULT_OK) {
-            eventImageView.setImageURI(Uri.parse(EventoViewModel.getCurrentPhotoPath()));
-        } else if (requestCode == REQUEST_SELECT_PHOTO && resultCode == getActivity().RESULT_OK) {
+        if (requestCode == REQUEST_SELECT_PHOTO && resultCode == getActivity().RESULT_OK) {
+
             Uri selectedImageUri = data.getData();
             eventImageView.setImageURI(selectedImageUri);
-            currentPhotoPath = selectedImageUri.getPath();
-            EventoViewModel.setCurrentPhotoPath(currentPhotoPath);
+
+            EventoViewModel.setCurrentPhoto(selectedImageUri);
+
         } else {
             Toast.makeText(getActivity(), "Photo not taken", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private void dispatchSelectPictureIntent() {

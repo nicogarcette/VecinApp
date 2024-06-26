@@ -52,16 +52,6 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
-//    private void loadData() {
-//        Query query = db.collection("usuario").whereEqualTo("mail", actualtUser.getEmail()).limit(1);;
-//
-//        query.get().addOnSuccessListener(queryDocumentSnapshots -> {
-//            if (!queryDocumentSnapshots.isEmpty()) {
-//                user = queryDocumentSnapshots.getDocuments().get(0).toObject(User.class);
-//            }
-//        }).addOnFailureListener(e -> {
-//        });
-//    }
     public void loadEvents(String comunidad) {
 
         String Idcomunidad = userSingleton.getUser() != null ?userSingleton.getUser().comunidad : comunidad;
@@ -101,6 +91,7 @@ public class HomeViewModel extends ViewModel {
         String nombreUser = documentSnapshot.getString("nombreUser");
         String apellidoUser = documentSnapshot.getString("apellidoUser");
         String mail = documentSnapshot.getString("mail");
+        String ImageUrl = documentSnapshot.getString("ImageUrl");
         String idCategory = documentSnapshot.getString("IdCategoria");
         Timestamp fecha = documentSnapshot.getTimestamp("fecha");
         //GeoPoint direccion = documentSnapshot.getGeoPoint("direccion");
@@ -117,9 +108,20 @@ public class HomeViewModel extends ViewModel {
         }
         String id = documentSnapshot.getId();
         String comunidad = documentSnapshot.getString("comunidad");
-        boolean verificado = documentSnapshot.getBoolean("verificado") != null ? documentSnapshot.getBoolean("verificado") : false;
 
-        return new Evento(descripcion, titulo, nombreUser, apellidoUser, idCategory, direccion, comunidad, verificado,id,fecha,mail);
+        return new Evento(
+                descripcion,
+                titulo,
+                nombreUser,
+                apellidoUser,
+                idCategory,
+                direccion,
+                comunidad,
+                id,
+                fecha,
+                mail,
+                ImageUrl
+                );
     }
 
     public static List<Evento> fromQuerySnapshot(QuerySnapshot querySnapshot) {

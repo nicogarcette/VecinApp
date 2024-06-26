@@ -12,8 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.vecinapp.ModelData.Evento;
 import com.example.vecinapp.R;
 import com.example.vecinapp.ui.perfil.PerfilViewModel;
@@ -26,6 +28,7 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -45,6 +48,7 @@ public class eventoPropioDetailFragment extends Fragment {
 
     private PerfilViewModel viewModel;
     private MapView mapView;
+    private ImageView imageView;
 
     private final View.OnDragListener dragListener = (v, event) -> {
         if (event.getAction() == DragEvent.ACTION_DROP) {
@@ -79,13 +83,6 @@ public class eventoPropioDetailFragment extends Fragment {
             }
         });
 
-
-//        if (getArguments().containsKey(ARG_ITEM_ID)) {
-//            // Load the placeholder content specified by the fragment
-//            // arguments. In a real-world scenario, use a Loader
-//            // to load content from a content provider.
-//           mItem = PlaceholderContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
-//        }
     }
 
     @Override
@@ -101,10 +98,8 @@ public class eventoPropioDetailFragment extends Fragment {
         dateView = binding.eventDate;
         categoryView = binding.eventCategoria;
         titleView = binding.eventTitle;
+        imageView= binding.headerImage;
 
-        // Show the placeholder content as text in a TextView & in the toolbar if available.
-        //updateContent();
-       // rootView.setOnDragListener(dragListener);
         return rootView;
     }
 
@@ -137,16 +132,19 @@ public class eventoPropioDetailFragment extends Fragment {
         mapView.getOverlays().add(marker);
 
     }
-
+    private void configuracionImagen(String imageUrl){
+        if (imageUrl != null && !imageUrl.isEmpty())
+            Glide.with(this).load(imageUrl).into(imageView);
+    }
     private void updateContent() {
 
-        Log.d("EVENTODETAIL", "BUSCANDO categoria  " + mItem.IdCategoria);
         if (mItem != null) {
             descriccionView.setText(mItem.descripcion);
             dateView.setText(formatoFecha(mItem.fecha));
             categoryView.setText(mItem.IdCategoria);
             titleView.setText(mItem.titulo);
             configuracionMapa();
+            configuracionImagen(mItem.ImageUrl);
         }
     }
 }

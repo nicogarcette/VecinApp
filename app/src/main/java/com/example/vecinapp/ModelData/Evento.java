@@ -18,9 +18,10 @@ public class Evento {
     public Timestamp fecha;
     public boolean verificado;
     public String id;
+    public String ImageUrl;
 
 
-    public Evento(String descripcion, String titulo, String nombreUser, String apellidoUser, String IdCategory, GeoPoint direccion, String comunidad, boolean verificado,String id, Timestamp fecha,String mail) {
+    public Evento(String descripcion, String titulo, String nombreUser, String apellidoUser, String IdCategory, GeoPoint direccion, String comunidad,String id, Timestamp fecha,String mail,String image) {
         this.descripcion = descripcion;
         this.titulo = titulo;
         this.nombreUser = nombreUser;
@@ -28,37 +29,13 @@ public class Evento {
         this.IdCategoria = IdCategory;
         this.direccion = direccion;
         this.comunidad = comunidad;
-        this.verificado = verificado;
         this.mail = mail;
         this.fecha = fecha;
         this.id = id;
+        this.ImageUrl = image;
     }
-    public Evento(String imagePath, String description) {
-        this.imagePath = imagePath;
-        this.descripcion = description;
-    }
-
-
-
 
     public Evento() {}
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
 
 
 }

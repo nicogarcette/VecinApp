@@ -1,6 +1,7 @@
 package com.example.vecinapp.ui.home.eventos_publicos;
 
 import android.content.ClipData;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -12,8 +13,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.vecinapp.ModelData.Evento;
 import com.example.vecinapp.R;
 import com.example.vecinapp.ui.home.HomeViewModel;
@@ -38,6 +41,8 @@ public class eventDetailFragment extends Fragment {
     private TextView dateView;
     private TextView categoryView;
     private TextView titleView;
+
+    private ImageView imageView;
 
     private HomeViewModel viewModel;
     private MapView mapView;
@@ -89,6 +94,7 @@ public class eventDetailFragment extends Fragment {
         dateView = binding.eventDate;
         categoryView = binding.eventCategoria;
         titleView = binding.eventTitle;
+        imageView = binding.headerImage;
 
         rootView.setOnDragListener(dragListener);
         return rootView;
@@ -108,8 +114,6 @@ public class eventDetailFragment extends Fragment {
 
         mapView = binding.map;
 
-        mItem.direccion.getLongitude();
-
         mapView.setMultiTouchControls(true);
         mapView.getController().setZoom(10.0);
         GeoPoint startPoint = new GeoPoint(mItem.direccion.getLatitude(),mItem.direccion.getLongitude());
@@ -122,19 +126,21 @@ public class eventDetailFragment extends Fragment {
         mapView.getOverlays().add(marker);
 
     }
+
+    private void configuracionImagen(String imageUrl){
+        if (imageUrl != null && !imageUrl.isEmpty())
+            Glide.with(this).load(imageUrl).into(imageView);
+    }
+
     private void updateContent() {
 
-        Log.d("EVENTODETAIL", "BUSCANDO categoria  " + mItem.IdCategoria);
         if (mItem != null) {
             descriccionView.setText(mItem.descripcion);
             dateView.setText(formatoFecha(mItem.fecha));
             categoryView.setText(mItem.IdCategoria);
             titleView.setText(mItem.titulo);
             configuracionMapa();
-
-//            if (mToolbarLayout != null) {
-//                mToolbarLayout.setTitle(mItem.titulo);
-//            }
+            configuracionImagen(mItem.ImageUrl);
         }
     }
 }
