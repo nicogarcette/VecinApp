@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.os.Environment;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 
 import androidx.annotation.NonNull;
@@ -24,6 +27,8 @@ import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 
 import com.example.vecinapp.ModelData.Evento;
@@ -32,6 +37,8 @@ import com.example.vecinapp.singleton.UserSingleton;
 import com.example.vecinapp.ui.dialog.DatePickerFragment;
 import com.example.vecinapp.R;
 import com.example.vecinapp.databinding.FragmentEventoBinding;
+import com.example.vecinapp.ui.home.HomeFragment;
+import com.example.vecinapp.ui.perfil.eventos_propios.fragment_evento_editar;
 
 
 import org.osmdroid.config.Configuration;
@@ -149,7 +156,7 @@ public class EventoFragment extends Fragment {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Método requerido, pero no necesitamos hacer nada aquí.
+
             }
         });
 
@@ -168,6 +175,10 @@ public class EventoFragment extends Fragment {
                 if (eventoCreado != null) {
                     if (eventoCreado) {
                         Toast.makeText(getActivity(), "Evento creado.", Toast.LENGTH_SHORT).show();
+
+                        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+                        navController.navigate(R.id.navigation_home);
+
                     } else {
                         Toast.makeText(getActivity(), "Error al crear el evento.", Toast.LENGTH_SHORT).show();
                     }
@@ -212,8 +223,6 @@ public class EventoFragment extends Fragment {
     }
 
 
-
-
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -235,7 +244,7 @@ public class EventoFragment extends Fragment {
 
         Evento nuevoEvento = new Evento();
         nuevoEvento.direccion = eventGeopoint;
-        nuevoEvento.IdCategoria = eventCategory; // nombre de categoria de una
+        nuevoEvento.IdCategoria = eventCategory;
         nuevoEvento.descripcion = descripcion;
         nuevoEvento.titulo = titulo;
         nuevoEvento.apellidoUser = user.apellido;
@@ -294,23 +303,12 @@ public class EventoFragment extends Fragment {
             startActivityForResult(selectPictureIntent, REQUEST_SELECT_PHOTO);
         }
     }
-    private void saveEvent() {
-        String description = eventDescription.getText().toString();
-        if (currentPhotoPath != null && !description.isEmpty()) {
-            Evento nuevoEvento = new Evento(currentPhotoPath, description);
-            // Aquí debes agregar la lógica para guardar el nuevo evento en la lista de eventos
-            // Por ejemplo, puedes guardarlo en una base de datos, una lista estática, etc.
 
-            // Muestra un mensaje de confirmación
-            Toast.makeText(getActivity(), "Evento guardado", Toast.LENGTH_SHORT).show();
+    @Override
+    public void onResume() {
+        super.onResume();
 
-            // Termina la actividad y regresa al menú principal
-            getActivity().finish();
-        } else {
-            Toast.makeText(getActivity(), "Completa todos los campos", Toast.LENGTH_SHORT).show();
-        }
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

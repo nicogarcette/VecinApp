@@ -100,6 +100,7 @@ public class HomeViewModel extends ViewModel {
         String titulo = documentSnapshot.getString("titulo");
         String nombreUser = documentSnapshot.getString("nombreUser");
         String apellidoUser = documentSnapshot.getString("apellidoUser");
+        String mail = documentSnapshot.getString("mail");
         String idCategory = documentSnapshot.getString("IdCategoria");
         Timestamp fecha = documentSnapshot.getTimestamp("fecha");
         //GeoPoint direccion = documentSnapshot.getGeoPoint("direccion");
@@ -118,7 +119,7 @@ public class HomeViewModel extends ViewModel {
         String comunidad = documentSnapshot.getString("comunidad");
         boolean verificado = documentSnapshot.getBoolean("verificado") != null ? documentSnapshot.getBoolean("verificado") : false;
 
-        return new Evento(descripcion, titulo, nombreUser, apellidoUser, idCategory, direccion, comunidad, verificado,id,fecha);
+        return new Evento(descripcion, titulo, nombreUser, apellidoUser, idCategory, direccion, comunidad, verificado,id,fecha,mail);
     }
 
     public static List<Evento> fromQuerySnapshot(QuerySnapshot querySnapshot) {

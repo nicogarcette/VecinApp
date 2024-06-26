@@ -5,4 +5,5 @@ public class User {
     public String apellido;
     public String mail;
     public String comunidad;
+    public boolean esAdmin;
 }

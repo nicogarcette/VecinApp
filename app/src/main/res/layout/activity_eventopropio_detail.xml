@@ -6,6 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_eventopropio_detail"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -18,5 +30,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/primary_details_nav_graph2"
         tools:layout="@layout/fragment_eventopropio_detail" />
+
+<!--    NA LO QUE RENEGUE CON EL GRAPH2-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,9 +21,13 @@ public class eventoPropioDetailHostActivity extends AppCompatActivity {
         ActivityEventopropioDetailBinding binding = ActivityEventopropioDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setSupportActionBar(binding.toolbar2);
+
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_eventopropio_detail);
+
         NavController navController = navHostFragment.getNavController();
+
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.
                 Builder(navController.getGraph())
                 .build();

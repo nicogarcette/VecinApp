@@ -14,12 +14,13 @@ public class Evento {
     public String IdCategoria;
     public GeoPoint direccion;
     public String comunidad;
+    public String mail;
     public Timestamp fecha;
     public boolean verificado;
     public String id;
 
 
-    public Evento(String descripcion, String titulo, String nombreUser, String apellidoUser, String IdCategory, GeoPoint direccion, String comunidad, boolean verificado,String id, Timestamp fecha) {
+    public Evento(String descripcion, String titulo, String nombreUser, String apellidoUser, String IdCategory, GeoPoint direccion, String comunidad, boolean verificado,String id, Timestamp fecha,String mail) {
         this.descripcion = descripcion;
         this.titulo = titulo;
         this.nombreUser = nombreUser;
@@ -28,6 +29,7 @@ public class Evento {
         this.direccion = direccion;
         this.comunidad = comunidad;
         this.verificado = verificado;
+        this.mail = mail;
         this.fecha = fecha;
         this.id = id;
     }

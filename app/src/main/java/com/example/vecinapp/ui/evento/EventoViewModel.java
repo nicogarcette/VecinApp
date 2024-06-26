@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.vecinapp.ModelData.Evento;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.CollectionReference;
 import java.util.HashMap;
@@ -27,6 +29,8 @@ public class EventoViewModel extends ViewModel {
 
     public void agregarEvento(Evento newEvent) {
 
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         Map<String, Object> evento = new HashMap<>();
         evento.put("nombreUser",newEvent.nombreUser);
         evento.put("descripcion", newEvent.descripcion);
@@ -35,6 +39,7 @@ public class EventoViewModel extends ViewModel {
         evento.put("fecha", Timestamp.now());
         evento.put("IdCategoria", newEvent.IdCategoria);   // nombre de categoria de una
         evento.put("apellidoUser", newEvent.apellidoUser);
+        evento.put("mail",currentUser.getEmail());
         evento.put("comunidad", newEvent.comunidad);
         evento.put("verificado", false);
 
