@@ -4,8 +4,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.vecinapp.singleton.UserSingleton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -16,6 +19,7 @@ import android.content.Intent;
 import com.example.vecinapp.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +47,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         UserSingleton.getInstance();
+
+
+
+        FirebaseMessaging.getInstance().subscribeToTopic("nuevo").addOnCompleteListener(
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "listo";
+                        if (!task.isSuccessful()){
+                            msg ="fallo";
+                        }
+                    }
+                }
+        );
+
+
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
