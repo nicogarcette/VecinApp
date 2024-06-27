@@ -135,9 +135,6 @@ public class EventoFragment extends Fragment {
 
             }
         });
-
-
-
     }
 
 

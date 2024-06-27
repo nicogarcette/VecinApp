@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="?attr/actionBarSize"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,12 +50,14 @@
             <Spinner
                 android:id="@+id/categoria_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="41dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
 
             <org.osmdroid.views.MapView
                 android:id="@+id/map"
-                android:layout_width="wrap_content"
-                android:layout_height="144dp" />
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp" />
 
             <Button
                 android:id="@+id/btn_save_event"
@@ -66,7 +68,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

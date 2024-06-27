@@ -91,7 +91,6 @@ public class eventDetailFragment extends Fragment {
         View rootView = binding.getRoot();
 
         mToolbarLayout = rootView.findViewById(R.id.toolbar_layout);
-        mToolbarLayout.setTitle("KEKE");
 
         descriccionView = binding.eventDetail;
         dateView = binding.eventDate;

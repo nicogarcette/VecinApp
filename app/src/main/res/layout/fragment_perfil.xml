@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.settings.SettingsFragment">
 
-
     <ImageView
         android:id="@+id/imageProfile"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_user_default"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_user_default" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textName"
@@ -43,7 +43,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
     <TextView
         android:id="@+id/text_perfil"
         android:layout_width="match_parent"
@@ -55,7 +54,6 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -88,16 +86,15 @@
 
     <Button
         android:id="@+id/btn_mis_eventos"
-        android:layout_width="164dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="83dp"
-        android:layout_marginEnd="231dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:text="Mis eventos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textEmail"
         tools:textSize="20dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

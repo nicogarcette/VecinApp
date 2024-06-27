@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.vecinapp.singleton.UserSingleton;
 import com.google.firebase.auth.FirebaseAuth;
 import android.content.Intent;
 
@@ -50,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                        UserSingleton.getInstance().refresh();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

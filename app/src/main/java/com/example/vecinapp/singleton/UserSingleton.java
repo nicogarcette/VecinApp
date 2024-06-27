@@ -44,6 +44,10 @@ public class UserSingleton {
         }).addOnFailureListener(e -> {
         });
     }
+
+    public void refresh(){
+        loadDataFromFirebase();
+    }
     public User getUser() {
         return user;
     }
