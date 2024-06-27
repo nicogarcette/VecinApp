@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -88,11 +89,24 @@ public class fragment_evento_editar extends Fragment {
         saveEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActualizarEvento();
+
+                new AlertDialog.Builder(requireContext())
+                        .setTitle("Confirmacion")
+                        .setMessage("Esta seguro de que desea actualizar el evento?")
+                        .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+
+                            ActualizarEvento();
+
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
             }
         });
 
     }
+
     private void ActualizarEvento() {
 
         String titulo = eventTitulo.getText().toString().trim();
@@ -105,7 +119,7 @@ public class fragment_evento_editar extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(requireContext(), "Evento actualizado.", Toast.LENGTH_SHORT).show();
-                        requireActivity().onBackPressed();
+                        requireActivity().onBackPressed();//volvemo
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

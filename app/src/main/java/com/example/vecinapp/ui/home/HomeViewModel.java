@@ -52,6 +52,29 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
+    public void getEventsBy(String Idcategoria) {
+
+        if (Idcategoria.equalsIgnoreCase("sin filtro")){
+            Log.d("EVENTOS", "Sin filtro???: " + Idcategoria);
+            loadEvents("ezpeleta");
+        }else {
+            String Idcomunidad = userSingleton.getUser() != null ?userSingleton.getUser().comunidad : "ezpeleta";
+
+            Query query = db.collection("evento").whereEqualTo("comunidad",Idcomunidad).whereEqualTo("IdCategoria",Idcategoria);
+            query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+                List<Evento> eventos = fromQuerySnapshot(queryDocumentSnapshots);
+                eventsLiveData.postValue(eventos);
+                for (Evento evento : eventos) {
+                    Log.d("EVENTOS", "Evento encontrado: " + evento.titulo);
+                }
+            }).addOnFailureListener(e -> {
+                eventsLiveData.postValue(new ArrayList<>());
+                Log.e("EVENTOS", "Error al obtener eventos", e);
+            });
+
+        }
+    }
+
     public void loadEvents(String comunidad) {
 
         String Idcomunidad = userSingleton.getUser() != null ?userSingleton.getUser().comunidad : comunidad;

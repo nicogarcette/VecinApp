@@ -4,4 +4,12 @@
         <item>anuncio</item>
         <item>servicio</item>
     </string-array>
+
+
+    <string-array name="categories_filtre">
+        <item>Sin filtro</item>
+        <item>reunion</item>
+        <item>anuncio</item>
+        <item>servicio</item>
+    </string-array>
 </resources>

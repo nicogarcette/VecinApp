@@ -9,7 +9,7 @@
 
     <style name="Theme.VecinApp.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="windowNoTitle">false</item>
     </style>
 
     <style name="Theme.VecinApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

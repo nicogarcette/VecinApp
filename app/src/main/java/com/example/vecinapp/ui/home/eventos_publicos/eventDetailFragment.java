@@ -31,6 +31,7 @@ import org.osmdroid.views.MapView;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 public class eventDetailFragment extends Fragment {
 
@@ -49,8 +50,8 @@ public class eventDetailFragment extends Fragment {
 
     private final View.OnDragListener dragListener = (v, event) -> {
         if (event.getAction() == DragEvent.ACTION_DROP) {
-            ClipData.Item clipDataItem = event.getClipData().getItemAt(0);
-            mItem = PlaceholderContent.ITEM_MAP.get(clipDataItem.getText().toString());
+            //ClipData.Item clipDataItem = event.getClipData().getItemAt(0);
+            //mItem = PlaceholderContent.ITEM_MAP.get(clipDataItem.getText().toString());
             updateContent();
         }
         return true;
@@ -90,6 +91,8 @@ public class eventDetailFragment extends Fragment {
         View rootView = binding.getRoot();
 
         mToolbarLayout = rootView.findViewById(R.id.toolbar_layout);
+        mToolbarLayout.setTitle("KEKE");
+
         descriccionView = binding.eventDetail;
         dateView = binding.eventDate;
         categoryView = binding.eventCategoria;
@@ -115,7 +118,7 @@ public class eventDetailFragment extends Fragment {
         mapView = binding.map;
 
         mapView.setMultiTouchControls(true);
-        mapView.getController().setZoom(10.0);
+        mapView.getController().setZoom(17.0);
         GeoPoint startPoint = new GeoPoint(mItem.direccion.getLatitude(),mItem.direccion.getLongitude());
         mapView.getController().setCenter(startPoint);
 

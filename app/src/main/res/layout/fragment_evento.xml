@@ -44,16 +44,6 @@
                 android:hint="Descripción del evento"
                 android:layout_marginTop="16dp" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/Date"-->
-<!--                android:hint="fecha del evento"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:inputType="date"-->
-<!--                android:focusable="false"-->
-<!--                android:clickable="true"-->
-<!--                android:maxLines="1" />-->
-
             <Spinner
                 android:id="@+id/categoria_spinner"
                 android:layout_width="match_parent"

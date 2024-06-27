@@ -91,18 +91,9 @@ public class EventoFragment extends Fragment {
         eventImageView = view.findViewById(R.id.event_image);
         eventDescription = view.findViewById(R.id.event_description);
         eventTitulo = view.findViewById(R.id.event_title);
-        //eventDate = view.findViewById(R.id.Date);
 
         addCategoria();
         configuracionMapa();
-
-
-//        eventDate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showDatePickerDialog();
-//            }
-//        });
 
         Button selectPhotoButton = view.findViewById(R.id.btn_select_photo);
         selectPhotoButton.setOnClickListener(new View.OnClickListener() {

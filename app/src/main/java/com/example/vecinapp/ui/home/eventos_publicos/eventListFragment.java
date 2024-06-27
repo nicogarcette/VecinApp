@@ -16,6 +16,10 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +57,8 @@ public class eventListFragment extends Fragment {
     private HomeViewModel viewModel;
     private FragmentEventListBinding binding;
     private SimpleItemRecyclerViewAdapter adapter;
+    private String eventCategory;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -87,6 +93,12 @@ public class eventListFragment extends Fragment {
         View itemDetailFragmentContainer = view.findViewById(R.id.event_detail_nav_container);
 
         setupRecyclerView(recyclerView, itemDetailFragmentContainer);
+
+
+        addCategoriaFiltro();
+        Button aplicarFiltro = binding.btnAplicarFiltro;
+
+        aplicarFiltro.setOnClickListener(v -> aplicarFiltro());
     }
 
     private void setupRecyclerView(RecyclerView recyclerView, View itemDetailFragmentContainer) {
@@ -104,6 +116,34 @@ public class eventListFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void aplicarFiltro(){
+        viewModel.getEventsBy(eventCategory);
+    };
+
+    private void addCategoriaFiltro() {
+
+        Spinner spinner = binding.categoriaFiltroSpinner;
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                requireActivity(),
+                R.array.categories_filtre,
+                android.R.layout.simple_spinner_item
+        );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                eventCategory = parent.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public static class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {

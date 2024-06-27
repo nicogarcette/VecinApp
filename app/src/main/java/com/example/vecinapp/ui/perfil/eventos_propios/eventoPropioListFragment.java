@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
@@ -121,8 +122,7 @@ public class eventoPropioListFragment extends Fragment {
         binding = null;
     }
 
-    public static class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+    public static class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private List<Evento> mValues;
         private final View mItemDetailFragmentContainer;
@@ -186,25 +186,7 @@ public class eventoPropioListFragment extends Fragment {
                 }
             });
 
-
-            holder.deleteButton.setOnClickListener(v -> {
-                int itemPosition = holder.getAdapterPosition();
-                if (itemPosition != RecyclerView.NO_POSITION) {
-                    Evento clickedEvento = mValues.get(itemPosition);
-
-                    viewModel.eliminarEvento(mValues.get(position).id)
-                            .addOnSuccessListener(aVoid -> {
-                                Toast.makeText(v.getContext(), "Evento eliminado correctamente", Toast.LENGTH_SHORT).show();
-                                viewModel.loadEvents();
-                            })
-                            .addOnFailureListener(e -> {
-                                Toast.makeText(v.getContext(), "Error al eliminar el evento", Toast.LENGTH_SHORT).show();
-                            });
-
-                    //Toast.makeText(v.getContext(), "Delete evento" +  mValues.get(position).id, Toast.LENGTH_SHORT).show();
-                }
-            });
-
+            eliminarEvento(holder);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
@@ -248,6 +230,37 @@ public class eventoPropioListFragment extends Fragment {
             });
         }
 
+        private void eliminarEvento(ViewHolder holder){
+
+            holder.deleteButton.setOnClickListener(v -> {
+
+                int itemPosition = holder.getAdapterPosition();
+
+                if (itemPosition != RecyclerView.NO_POSITION) {
+                    Evento clickedEvento = mValues.get(itemPosition);
+
+                    new AlertDialog.Builder(v.getContext())
+                            .setTitle("Confirmacion")
+                            .setMessage("Esta seguro de que desea eliminar el evento?")
+                            .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+
+                                viewModel.eliminarEvento(clickedEvento.id)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Toast.makeText(v.getContext(), "Evento eliminado correctamente", Toast.LENGTH_SHORT).show();
+                                            viewModel.loadEvents();
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Toast.makeText(v.getContext(), "Error al eliminar el evento", Toast.LENGTH_SHORT).show();
+                                        });
+                            })
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+            });
+
+        }
+
         @Override
         public int getItemCount() {
             return mValues.size();
@@ -256,8 +269,6 @@ public class eventoPropioListFragment extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView mIdView;
             final TextView mContentView;
-            //public ImageButton menuButton;
-
             public ImageButton editButton;
             public ImageButton deleteButton;
 

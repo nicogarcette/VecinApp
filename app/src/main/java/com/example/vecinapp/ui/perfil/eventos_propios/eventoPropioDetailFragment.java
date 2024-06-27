@@ -121,7 +121,7 @@ public class eventoPropioDetailFragment extends Fragment {
         mItem.direccion.getLongitude();
 
         mapView.setMultiTouchControls(true);
-        mapView.getController().setZoom(10.0);
+        mapView.getController().setZoom(17.0);
         GeoPoint startPoint = new GeoPoint(mItem.direccion.getLatitude(),mItem.direccion.getLongitude());
         mapView.getController().setCenter(startPoint);
 
