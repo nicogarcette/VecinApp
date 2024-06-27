@@ -189,8 +189,6 @@ public class fragment_evento_editar extends Fragment {
         MapEventsOverlay overlayEventos = new MapEventsOverlay(getContext(), mReceive);
         mapView.getOverlays().add(overlayEventos);
 
-        Log.d("MAPA", "mapa configurado?");
-
     }
 
 }

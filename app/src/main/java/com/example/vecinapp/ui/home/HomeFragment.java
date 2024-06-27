@@ -36,20 +36,18 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Configurar el Toolbar como ActionBar
+
         AppCompatActivity activity = ((AppCompatActivity) requireActivity());
         activity.setSupportActionBar(binding.toolbar);
 
-        // Obtener el NavController
         NavHostFragment navHostFragment = (NavHostFragment) getChildFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_event_detail);
         NavController navController = navHostFragment.getNavController();
 
-        // Configurar AppBarConfiguration con los destinos del grafo de navegación
+
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
                 .build();
 
-        // Configurar la ActionBar con NavController y AppBarConfiguration
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration);
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {

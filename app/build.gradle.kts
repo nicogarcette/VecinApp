@@ -59,20 +59,17 @@ dependencies {
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
 
-    // When using the BoM, don't specify versions in Firebase dependencies
+
     implementation ("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-storage")
     implementation("com.google.firebase:firebase-messaging")
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
+
 
     // MAPA OSM
     implementation ("org.osmdroid:osmdroid-android:6.1.11")
-//    implementation 'org.osmdroid:osmdroid-wms:6.1.11'
-//    implementation 'org.osmdroid:osmdroid-mapsforge:(INSERT_VERSION_HERE)'
-//    implementation 'org.osmdroid:osmdroid-geopackage:(INSERT_VERSION_HERE)'
+
 
     // glide para cargar imagenes
     implementation ("com.github.bumptech.glide:glide:4.14.2")

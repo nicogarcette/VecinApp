@@ -18,23 +18,18 @@ public class EventDetailHostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Inflar el layout usando el binding
         ActivityEventDetailBinding binding = ActivityEventDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Configurar el Toolbar como ActionBar
         setSupportActionBar(binding.toolbar);
 
-        // Obtener el NavHostFragment y NavController
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_event_detail);
         NavController navController = navHostFragment.getNavController();
 
-        // Configurar AppBarConfiguration con los destinos del grafo de navegación
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
                 .build();
 
-        // Configurar la ActionBar con NavController y AppBarConfiguration
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     }
 

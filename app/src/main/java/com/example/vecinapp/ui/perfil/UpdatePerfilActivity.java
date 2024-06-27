@@ -48,7 +48,7 @@ import java.util.Map;
 public class UpdatePerfilActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_UPDATE_PERFIL = 1;
-    private String currentPhotoPath;
+
     private FirebaseStorage storage;
     private FirebaseUser actualtUser;
     private FirebaseFirestore db;

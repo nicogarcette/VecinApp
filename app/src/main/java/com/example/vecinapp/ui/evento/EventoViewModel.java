@@ -31,7 +31,6 @@ public class EventoViewModel extends ViewModel {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference eventosRef = db.collection("evento");
     private Uri currentPhoto;
-    private String PhotoUrl;
 
     private MutableLiveData<Boolean> eventoCreado = new MutableLiveData<>();
 
