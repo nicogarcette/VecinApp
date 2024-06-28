@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // verificacion de autentintificacion y la preferencia
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentUser == null && !mantenerSesion) {
 
-            // El usuario no está autenticado o no ha elegido mantener la sesión iniciada
-            // Redirigir a la actividad de inicio de sesión
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -47,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         UserSingleton.getInstance();
-
-
 
         FirebaseMessaging.getInstance().subscribeToTopic("nuevo").addOnCompleteListener(
                 new OnCompleteListener<Void>() {
@@ -62,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
-
-
+        
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
