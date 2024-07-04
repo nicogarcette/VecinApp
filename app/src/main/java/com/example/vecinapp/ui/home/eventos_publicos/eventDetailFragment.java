@@ -1,7 +1,7 @@
 package com.example.vecinapp.ui.home.eventos_publicos;
 
-import android.content.ClipData;
-import android.net.Uri;
+
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -21,7 +21,6 @@ import com.example.vecinapp.ModelData.Evento;
 import com.example.vecinapp.R;
 import com.example.vecinapp.ui.home.HomeViewModel;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.example.vecinapp.placeholder.PlaceholderContent;
 import com.example.vecinapp.databinding.FragmentEventDetailBinding;
 import com.google.firebase.Timestamp;
 import org.osmdroid.views.overlay.Marker;
@@ -31,7 +30,6 @@ import org.osmdroid.views.MapView;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 public class eventDetailFragment extends Fragment {
 
@@ -50,8 +48,6 @@ public class eventDetailFragment extends Fragment {
 
     private final View.OnDragListener dragListener = (v, event) -> {
         if (event.getAction() == DragEvent.ACTION_DROP) {
-            //ClipData.Item clipDataItem = event.getClipData().getItemAt(0);
-            //mItem = PlaceholderContent.ITEM_MAP.get(clipDataItem.getText().toString());
             updateContent();
         }
         return true;

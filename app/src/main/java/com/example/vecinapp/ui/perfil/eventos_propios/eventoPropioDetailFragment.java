@@ -1,9 +1,9 @@
 package com.example.vecinapp.ui.perfil.eventos_propios;
 
-import android.content.ClipData;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.view.DragEvent;
+
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -20,7 +20,7 @@ import com.example.vecinapp.ModelData.Evento;
 import com.example.vecinapp.R;
 import com.example.vecinapp.ui.perfil.PerfilViewModel;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.example.vecinapp.placeholder.PlaceholderContent;
+
 import com.example.vecinapp.databinding.FragmentEventopropioDetailBinding;
 
 import com.google.firebase.Timestamp;
@@ -28,7 +28,6 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -50,14 +49,6 @@ public class eventoPropioDetailFragment extends Fragment {
     private MapView mapView;
     private ImageView imageView;
 
-    private final View.OnDragListener dragListener = (v, event) -> {
-        if (event.getAction() == DragEvent.ACTION_DROP) {
-            ClipData.Item clipDataItem = event.getClipData().getItemAt(0);
-            mItem = PlaceholderContent.ITEM_MAP.get(clipDataItem.getText().toString());
-            updateContent();
-        }
-        return true;
-    };
     private FragmentEventopropioDetailBinding binding;
 
     public eventoPropioDetailFragment() {

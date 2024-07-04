@@ -40,7 +40,6 @@ public class FirebaseNotificationService extends FirebaseMessagingService {
 
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
         notificationManager.notify(0, notificationBuilder.build());
     }

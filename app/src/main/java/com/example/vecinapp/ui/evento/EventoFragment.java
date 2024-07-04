@@ -1,6 +1,5 @@
 package com.example.vecinapp.ui.evento;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,35 +10,29 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
+
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.os.Environment;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
+
 import androidx.lifecycle.Observer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
+
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-
 import com.example.vecinapp.ModelData.Evento;
 import com.example.vecinapp.ModelData.User;
 import com.example.vecinapp.singleton.UserSingleton;
-import com.example.vecinapp.ui.dialog.DatePickerFragment;
+
 import com.example.vecinapp.R;
 import com.example.vecinapp.databinding.FragmentEventoBinding;
-import com.example.vecinapp.ui.home.HomeFragment;
-import com.example.vecinapp.ui.perfil.eventos_propios.fragment_evento_editar;
-
 
 import org.osmdroid.config.Configuration;
 import org.osmdroid.events.MapEventsReceiver;
@@ -48,11 +41,6 @@ import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.MapView;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-
 import org.osmdroid.util.GeoPoint;
 
 
@@ -60,9 +48,8 @@ public class EventoFragment extends Fragment {
 
     private FragmentEventoBinding binding;
 
-    static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_SELECT_PHOTO = 2;
-    private String currentPhotoPath;
+
     private ImageView eventImageView;
     private EditText eventDescription;
     private EditText eventTitulo;
@@ -193,19 +180,6 @@ public class EventoFragment extends Fragment {
         MapEventsOverlay overlayEventos = new MapEventsOverlay(getContext(), mReceive);
         mapView.getOverlays().add(overlayEventos);
 
-    }
-
-
-    private void showDatePickerDialog() {
-        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                final String selectedDate = day + " / " + (month+1) + " / " + year;
-                eventDate.setText(selectedDate);
-            }
-        });
-
-        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
     private void crearEvento() {

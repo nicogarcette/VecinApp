@@ -31,6 +31,6 @@
         app:navGraph="@navigation/primary_details_nav_graph2"
         tools:layout="@layout/fragment_eventopropio_detail" />
 
-<!--    NA LO QUE RENEGUE CON EL GRAPH2-->
+<!--    rompia  EL GRAPH2-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

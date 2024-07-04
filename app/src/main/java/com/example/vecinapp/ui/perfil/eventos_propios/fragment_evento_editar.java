@@ -1,6 +1,6 @@
 package com.example.vecinapp.ui.perfil.eventos_propios;
 
-import android.net.Uri;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
