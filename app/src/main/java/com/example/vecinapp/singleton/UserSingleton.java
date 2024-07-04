@@ -1,6 +1,6 @@
 package com.example.vecinapp.singleton;
 
-import android.util.Log;
+
 
 import com.example.vecinapp.ModelData.User;
 import com.google.firebase.auth.FirebaseAuth;

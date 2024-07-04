@@ -1,9 +1,8 @@
 package com.example.vecinapp.ui.perfil;
 
-import android.net.Uri;
+
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,9 +11,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
-import com.example.vecinapp.ModelData.User;
 import com.example.vecinapp.R;
 import com.example.vecinapp.singleton.UserSingleton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,18 +23,11 @@ import com.google.firebase.storage.StorageReference;
 import android.content.Intent;
 import android.widget.Spinner;
 import android.widget.Toast;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import android.widget.EditText;
-import android.os.Bundle;
+
 import android.util.Log;
-import android.widget.EditText;
-import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.HashMap;
 import java.util.Map;

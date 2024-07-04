@@ -1,6 +1,9 @@
 package com.example.vecinapp;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.example.vecinapp.singleton.UserSingleton;
@@ -21,6 +24,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import org.osmdroid.config.Configuration;
+
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -28,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        loadLocale();
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -74,9 +81,50 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    public void loadLocale() {
+
+       SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String language = sharedPreferences.getString("language", "");
+        setLocale(language);
+    }
+
+    public void setLocale(String lang) {
+
+        Locale locale = new Locale(getLanguageCode(lang));
+        Locale.setDefault(locale);
+
+        Resources resources = getResources();
+        android.content.res.Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    private String getLanguageCode(String language) {
+        switch (language) {
+            case "Español":
+                return "es";
+            case "English":
+                return "en";
+            default:
+                return "es";
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+        if (!sharedPreferences.getBoolean("mantenerSesion", false)) {
+            FirebaseAuth.getInstance().signOut();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         if (!sharedPreferences.getBoolean("mantenerSesion", false)) {
