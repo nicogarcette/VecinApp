@@ -67,7 +67,7 @@ public class SettingsFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        // Cargar y establecer el idioma seleccionado desde SharedPreferences
+
         String savedLanguage = sharedPreferences.getString("language", "");
 
         if (!savedLanguage.isEmpty()) {
@@ -79,28 +79,25 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedLanguage = parent.getItemAtPosition(position).toString();
-                saveLanguagePreference(selectedLanguage);
-                //setAppLocale(selectedLanguage);
+
+                if (!selectedLanguage.equals(sharedPreferences.getString("language", ""))) {
+                    saveLanguagePreference(selectedLanguage);
+                    setAppLocale(selectedLanguage);
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Método requerido, pero no necesitamos hacer nada aquí.
             }
         });
     }
 
     public void setAppLocale(String languageCode) {
-        // Guardar el idioma seleccionado en las preferencias
-        saveLanguagePreference(languageCode);
-
-        // Actualizar la configuración de idioma en la aplicación
         updateLocale(languageCode);
-
-        // Reiniciar la vista actual para aplicar los cambios
         requireActivity().recreate();
     }
 
     private void updateLocale(String languageCode) {
+
         Locale locale = new Locale(getLanguageCode(languageCode));
         Locale.setDefault(locale);
 
@@ -108,33 +105,15 @@ public class SettingsFragment extends Fragment {
         Configuration configuration = resources.getConfiguration();
         configuration.setLocale(locale);
 
-        // Actualizar la configuración de recursos de la aplicación
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
-
-
-//    public void setAppLocale(String languageCode) {
-//        Locale locale = new Locale(getLanguageCode(languageCode));
-//        Locale.setDefault(locale);
-//
-//        Resources resources = getResources();
-//        Configuration configuration = resources.getConfiguration();
-//        configuration.setLocale(locale);
-//
-//        // Actualizar la configuración de recursos de la aplicación
-//        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-//
-//        // Reiniciar la actividad actual para aplicar los cambios de idioma
-//        Intent refreshIntent = requireActivity().getIntent();
-//        requireActivity().finish();
-//        startActivity(refreshIntent);
-//    }
 
     private void saveLanguagePreference(String selectedLanguage) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("language", selectedLanguage);
         editor.apply();
     }
+
 
     private String getLanguageCode(String language) {
         switch (language) {
@@ -152,11 +131,11 @@ public class SettingsFragment extends Fragment {
         Switch switch_sesion = view.findViewById(R.id.switch_sesion);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        // Cargar el estado del Switch desde SharedPreferences
+        // cargamos el estado del Switch desde SharedPreferences
         boolean mantenerSesion = sharedPreferences.getBoolean("mantenerSesion", false);
         switch_sesion.setChecked(mantenerSesion);
 
-        // Manejar cambios en el estado del Switch
+
         switch_sesion.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editor.putBoolean("mantenerSesion", isChecked);
             editor.apply();
@@ -173,7 +152,7 @@ public class SettingsFragment extends Fragment {
 
         Intent intent = new Intent(requireActivity(), LoginActivity.class);
         startActivity(intent);
-        requireActivity().finish(); // evitar q el usuario use el boton de retroceso
+        requireActivity().finish(); // evitar el retroceso
     }
 
     @Override
